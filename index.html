@@ -33,11 +33,33 @@
     <h1>Payan 2016</h1>
   </div>
 </div>
+<div data-role="page" id="series">
+	<div data-role="header">
+		<h1>SERIES</h1>
+	</div>
+	<div data-role="content">
+    	<form id="seri" name="seri" method="post" action="">
+        	NOMBRE:<input type="text" name="serie" id="serie" /><br />
+            TEMPORADA:<input type="number" name="temporada" id="temporada" /><br />
+            EPISODIO:<input type="number" name="episodio" id="episodio" /><br />
+            <input type="submit" value="buscar" id="bus" /><br />
+        </form>        
+        <div id="salida"></div>
+	</div>
+	<div data-role="footer">
+		<h1>Payan 2016 <a id="boton" data-role"button" href="#home">HOME</a></h1>
+	</div>
+</div>
 <div data-role="page" id="peliculas">
 	<div data-role="header">
 		<h1>PELICULAS</h1>
 	</div>
 	<div data-role="content">
+    	<form id="peli" name="peli" method="post" action="">
+        	<input type="text" name="pelicula" id="pelicula" /><br />
+            <input type="submit" value="buscar" id="bus" /><br />
+        </form>
+        <div id="dataString"></div>
 	</div>
 	<div data-role="footer">
 		<h1>Payan 2016 <a id="boton" data-role"button" href="#home">HOME</a></h1>
@@ -56,6 +78,40 @@
 	<h1>Payan 2016</h1>
 </div>
 </div>
+<script>
+$('#seri').submit(function(){		
+	var serie = $("#serie").val()	
+	var epi = $("#episodio").val()
+	var temp = $("#temporada").val()
+  	archivoValidacion = "https://payan.no-ip.org/APP/series.php?jsoncallback=?"
+	$.getJSON( archivoValidacion, {serie:serie, temp:temp, epi:epi})
+	.done(function(respuestaServer) {
+		if (respuestaServer.NOMBRE == null){
+			alert("NO HAY NINGUN RESULTADO");
+		}else{
+			var thevar="<center><h2>"+respuestaServer.NOMBRE+"</h2><br><video controls='true' width='480' height='320' src='https://payan.no-ip.org/"+respuestaServer.DIRECTORIO+"'></video><br>"+respuestaServer.DESCRIPCION+"</center>"
+			document.getElementById('salida').innerHTML = thevar;
+		}
+	})
+	return false;
+})
+</script>
+<script>
+$('#peli').submit(function(){		
+	var pelicula = $("#pelicula").val()	
+  	archivoValidacion = "https://payan.no-ip.org/APP/peliculas.php?jsoncallback=?"
+	$.getJSON( archivoValidacion, {pelicula:pelicula})
+	.done(function(respuestaServer) {
+		if (respuestaServer.NOMBRE == null){
+			alert("NO HAY NINGUN RESULTADO");
+		}else{
+			var thevar="<center><h2>"+respuestaServer.NOMBRE+"</h2><br><video controls='true' width='480' height='320' src='https://payan.no-ip.org/"+respuestaServer.DIRECTORIO+"'></video><br>"+respuestaServer.DESCRIPCION+"</center>"
+			document.getElementById('dataString').innerHTML = thevar;
+		}
+	})
+	return false;
+})
+</script>
 <script>
 $('#formulario').submit(function() { 
 	
@@ -83,8 +139,6 @@ $('#formulario').submit(function() {
 	})
 	return false;
 })
-
 </script>
 </body>
 </html>
-
