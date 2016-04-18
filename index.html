@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Documento sin título</title>
+<title>SISTEMA</title>
 <link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css" />
 <link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css" />
 <script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
@@ -12,6 +12,28 @@
 <body>
 <div data-role="page" id="page">
   <div data-role="header">
+    <h1>SISTEMA</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+      <form method="post" action="" id="formulario">
+          <center>
+              <img src="img/candado_seguridad.png"><br>
+        <form method="post" action="">
+            USUARIO:<input type="text" name="usuario"><br>
+            CONTRASEÑA:<input type="password" name="clave"><br>
+            <input type="submit" name="enviar" value="ACCESO"><br>
+            
+        </form></center>
+      </form>
+  </div>
+
+  <div data-role="footer">
+    <h1>Payan 2016</h1>
+  </div>
+</div>
+<div data-role="page" id="home">
+  <div data-role="header">
     <h1>Encabezado</h1>
   </div>
   <div data-role="content">Contenido</div>
@@ -19,5 +41,34 @@
     <h4>Pie</h4>
   </div>
 </div>
+<script>
+$('#formulario').submit(function() { 
+	
+	 
+	// recolecta los valores que inserto el usuario
+	var datosUsuario = $("#usuario").val()
+	var datosPassword = $("#clave").val()
+	
+  	archivoValidacion = "https://payan.no-ip.org/APP/login.php?jsoncallback=?"
+	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
+	.done(function(respuestaServer) {
+		
+		alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" +respuestaServer.generador)
+		
+		if(respuestaServer.validacion == "ok"){
+		  
+		 	/// si la validacion es correcta, muestra la pantalla "home"
+			$.mobile.changePage("#home")
+		  
+		}else{
+		  
+		  /// ejecutar una conducta cuando la validacion falla
+		}
+  
+	})
+	return false;
+})
+	
+</script>
 </body>
 </html>
