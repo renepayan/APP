@@ -126,7 +126,7 @@ $('#formulario').submit(function() {
 		if(respuestaServer.validacion == "ok"){
 		  
 		 	/// si la validacion es correcta, muestra la pantalla "home"
-			$.mobile.changePage("#home")
+			$.mobile.changePage("#home",{ transition: "slide", reverse: true, changeHash: false })
 		  
 		}else{
 		  
