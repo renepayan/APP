@@ -110,7 +110,24 @@ $('#peli').submit(function(){
 	})
 	return false;
 })
-$('#formulario').submit(function() { 
+$('#formulario').submit(function(){
+	var datosUsuario = $("#nombredeusuario").val()
+	var datosPassword = $("#clave").val()
+var url = "https://payan.no-ip.org/APP/login.php?jsoncallback=?&usuario=" + encodeURIComponent(datosUsuario) + "&password="+ encodeURIComponent(datosPassword)
+$.ajax({
+url: url,
+dataType: 'jsonp',
+jsonp: 'jsonp_callback',
+success:function(data) {
+	alert(data.mensaje)
+},
+error:function() {
+	alert("THIS DON'T WORK")
+}
+});
+
+})
+$('#formulario1').submit(function() { 
 	
 	 
 	// recolecta los valores que inserto el usuario
@@ -121,7 +138,7 @@ $('#formulario').submit(function() {
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
 	.done(function(respuestaServer) {
 		
-		///alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" +respuestaServer.generador)
+		alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" +respuestaServer.generador)
 		
 		if(respuestaServer.validacion == "ok"){
 		  
