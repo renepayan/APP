@@ -26,7 +26,6 @@
      			<input type="password" id="clave" name="clave" >
       			<input type="submit" value="ACCESO" id="botonLogin"><br>            
         </form></center>
-        <a id="boton"  data-role="button" href="#peliculas">PELICULAS</a> <a id="boton"  data-role="button" href="#series">SERIES</a> <a id="boton"  data-role="button" href="#docs">DOCUMENTOS</a>
   </div>
 
   <div data-role="footer">
@@ -78,6 +77,8 @@
 	<h1>Payan 2016</h1>
 </div>
 </div>
+</body>
+
 <script>
 $('#seri').submit(function(){		
 	var serie = $("#serie").val()	
@@ -95,8 +96,6 @@ $('#seri').submit(function(){
 	})
 	return false;
 })
-</script>
-<script>
 $('#peli').submit(function(){		
 	var pelicula = $("#pelicula").val()	
   	archivoValidacion = "https://payan.no-ip.org/APP/peliculas.php?jsoncallback=?"
@@ -111,8 +110,6 @@ $('#peli').submit(function(){
 	})
 	return false;
 })
-</script>
-<script>
 $('#formulario').submit(function() { 
 	
 	 
@@ -140,5 +137,4 @@ $('#formulario').submit(function() {
 	return false;
 })
 </script>
-</body>
 </html>
