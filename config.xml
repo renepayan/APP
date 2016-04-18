@@ -13,5 +13,5 @@ App para payan.no-ip.org
 <author href="https://payan.no-ip.org" email="rene@payan.no-ip.org">
 Rene Payan Tellez
 </author>
-
+<icon src="icon.png" />
 </widget>
