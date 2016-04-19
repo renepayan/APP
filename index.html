@@ -1,85 +1,115 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>SISTEMA</title>
-<link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css" />
-<link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css" />
-<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
-<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
-<script>
-	$("#boton").button(); 
-</script>
-</head>
-
-<body>
-<div data-role="page" id="page">
-	<div data-role="header">
-    	<h1>SISTEMA</h1>
-	</div>
-	<div data-role="main" class="ui-content">
-	    <form method="post" action="" id="formulario">
-    	    <center>
-        	   <img src="img/candado_seguridad.png"><br>
-               <label>USUARIO:</label><input type="text" id="nombredeusuario" name="nombredeusuario">      
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>SISTEMA</title>
+		<link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css" />
+		<link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css" />
+		<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
+		<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+		<script>
+			$("#boton").button(); 
+		</script>
+	</head>
+	<body>
+	<div data-role="page" id="page">
+		<div data-role="header">
+    		<h1>SISTEMA</h1>
+		</div>
+		<div data-role="main" class="ui-content">
+	    	<form method="post" action="" id="formulario">
+    	    	<center>
+        	   	<img src="img/candado_seguridad.png"><br>
+               	<label>USUARIO:</label><input type="text" id="nombredeusuario" name="nombredeusuario">      
       			<label> PASSWORD: </label>
      			<input type="password" id="clave" name="clave" >
       			<input type="submit" value="ACCESO" id="botonLogin"><br>            
-        </form></center>
-  </div>
-
-  <div data-role="footer">
-    <h1>Payan 2016</h1>
-  </div>
-</div>
-<div data-role="page" id="series">
-	<div data-role="header">
-		<h1>SERIES</h1>
+                </center>
+	        </form>
+  		</div>
+  		<div data-role="footer">
+    		<h1>Payan 2016</h1>
+		</div>
 	</div>
-	<div data-role="content">
-    	<form id="seri" name="seri" method="post" action="">
-        	NOMBRE:<input type="text" name="serie" id="serie" /><br />
-            TEMPORADA:<input type="number" name="temporada" id="temporada" /><br />
-            EPISODIO:<input type="number" name="episodio" id="episodio" /><br />
-            <input type="submit" value="buscar" id="bus" /><br />
-        </form>        
-        <div id="salida"></div>
+	<div data-role="page" id="series">
+		<div data-role="header">
+			<h1>SERIES</h1>
+		</div>
+		<div data-role="content">
+    		<form id="seri" name="seri" method="post" action="">
+        		NOMBRE:<input type="text" name="serie" id="serie" /><br />
+	            TEMPORADA:<input type="number" name="temporada" id="temporada" /><br />
+    	        EPISODIO:<input type="number" name="episodio" id="episodio" /><br />
+        	    <input type="submit" value="buscar" id="bus" /><br />
+	        </form>        
+        	<div id="salida"></div>
+		</div>
+		<div data-role="footer">
+			<h1>Payan 2016 <a id="boton" data-role"button" href="#home">HOME</a></h1>
+		</div>
 	</div>
-	<div data-role="footer">
-		<h1>Payan 2016 <a id="boton" data-role"button" href="#home">HOME</a></h1>
+	<div data-role="page" id="peliculas">
+		<div data-role="header">
+			<h1>PELICULAS</h1>
+		</div>
+		<div data-role="content">
+    		<form id="peli" name="peli" method="post" action="">
+	        	<input type="text" name="pelicula" id="pelicula" /><br />
+    	        <input type="submit" value="buscar" id="bus" /><br />
+        	</form>
+	        <div id="dataString"></div>
+		</div>
+		<div data-role="footer">
+			<h1>Payan 2016 <a id="boton" data-role"button" href="#home">HOME</a></h1>
+		</div>
 	</div>
-</div>
-<div data-role="page" id="peliculas">
-	<div data-role="header">
-		<h1>PELICULAS</h1>
+	<div data-role="page" id="home">
+		<div data-role="header">
+			<h1>Bienvenido <div id="saludo"></div></h1>
+		</div>	
+		<div data-role="content">
+        	<div id="demo"></div>
+			<a id="boton"  data-role="button" href="#peliculas">PELICULAS</a> <a id="boton"  data-role="button" href="#series">SERIES</a> 
+            <form id='lol' name='lol' action="" method="post">
+            	<div id="oculto"></div>
+            	<input type="submit" name="enviar" id="send" value="DOCUMENTOS" />
+            </form>
+		</div>
+		<div data-role="footer">
+			<h1>Payan 2016</h1>
+		</div>
 	</div>
-	<div data-role="content">
-    	<form id="peli" name="peli" method="post" action="">
-        	<input type="text" name="pelicula" id="pelicula" /><br />
-            <input type="submit" value="buscar" id="bus" /><br />
-        </form>
-        <div id="dataString"></div>
-	</div>
-	<div data-role="footer">
-		<h1>Payan 2016 <a id="boton" data-role"button" href="#home">HOME</a></h1>
-	</div>
-</div>
-<div data-role="page" id="home">
-
-	<div data-role="header">
-		<h1>Bienvenido</h1>
-	</div>
-
-	<div data-role="content">	
-		<a id="boton"  data-role="button" href="#peliculas">PELICULAS</a> <a id="boton"  data-role="button" href="#series">SERIES</a> <a id="boton"  data-role="button" href="#docs">DOCUMENTOS</a>
-	</div>
-<div data-role="footer">
-	<h1>Payan 2016</h1>
-</div>
-</div>
+	<div data-role="page" id="documentos">
+		<div data-role="header">
+			<h1>Documentos</h1>
+		</div>	
+		<div data-role="content">
+        	<table>
+				<div id="doc"></div>                    
+            </table>
+		</div>
+		<div data-role="footer">
+			<h1>Payan 2016 <a id="boton" href="#home">HOME</a></h1>
+		</div>
+	</div>    
 </body>
 
 <script>
+$('#lol').submit(function(){		
+	var usuario = $("#user").val()
+  	archivoValidacion = "https://payan.no-ip.org/APP/documentos.php?jsoncallback=?"
+	$.getJSON(archivoValidacion, {usuario:usuario})
+	.done(function(respuesta) {
+		$.each(respuesta, function(i, field){
+			var nombre=field.NOMBRE;
+			var zelda="<a href='https://payan.no-ip.org/descargar.php?tipo=doc&id="+field.id+"&usuario="+usuario+"'>"+nombre+"</a>";
+			var fecha=field.FECHA;
+			$("#doc").append("<tr><td>"+zelda+"</td><td>"+fecha+"</td></tr>");
+		})
+		$.mobile.changePage("#documentos")
+	})
+	return false;
+})
 $('#seri').submit(function(){		
 	var serie = $("#serie").val()	
 	var epi = $("#episodio").val()
@@ -90,8 +120,8 @@ $('#seri').submit(function(){
 		if (respuestaServer.NOMBRE == null){
 			alert("NO HAY NINGUN RESULTADO");
 		}else{
-			var thevar="<center><h2>"+respuestaServer.NOMBRE+"</h2><br><video controls='true' width='480' height='320' src='https://payan.no-ip.org/"+respuestaServer.DIRECTORIO+"'></video><br>"+respuestaServer.DESCRIPCION+"</center>"
-			document.getElementById('salida').innerHTML = thevar;
+			var thevar="<center><h2>"+respuestaServer.NOMBRE+"</h2><br><video width='200' height='197' controls='true' width='480' height='320' src='https://payan.no-ip.org/"+respuestaServer.DIRECTORIO+"'></video><br>"+respuestaServer.DESCRIPCION+"</center>"
+			document.getElementById('salida').innerHTML = thevar;	
 		}
 	})
 	return false;
@@ -104,37 +134,32 @@ $('#peli').submit(function(){
 		if (respuestaServer.NOMBRE == null){
 			alert("NO HAY NINGUN RESULTADO");
 		}else{
-			var thevar="<center><h2>"+respuestaServer.NOMBRE+"</h2><br><video controls='true' width='480' height='320' src='https://payan.no-ip.org/"+respuestaServer.DIRECTORIO+"'></video><br>"+respuestaServer.DESCRIPCION+"</center>"
+			var thevar="<center><h2>"+respuestaServer.NOMBRE+"</h2><br><video width='200' height='197' controls='true' width='480' height='320' src='https://payan.no-ip.org/"+respuestaServer.DIRECTORIO+"'></video><br>"+respuestaServer.DESCRIPCION+"</center>"
 			document.getElementById('dataString').innerHTML = thevar;
 		}
 	})
 	return false;
 })
 $('#formulario').submit(function() { 
-	
-	 
-	// recolecta los valores que inserto el usuario
 	var datosUsuario = $("#nombredeusuario").val()
-	var datosPassword = $("#clave").val()
-	
+	var datosPassword = $("#clave").val()	
   	archivoValidacion = "https://payan.no-ip.org/APP/login.php?jsoncallback=?"
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
-	.done(function(respuestaServer) {
-		
-		alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" +respuestaServer.generador)
-		
+	.done(function(respuestaServer) {		
+		alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" +respuestaServer.generador)		
 		if(respuestaServer.validacion == "ok"){
-		  
-		 	/// si la validacion es correcta, muestra la pantalla "home"
-			$.mobile.changePage("#home",{ transition: "slide", reverse: true, changeHash: false })
-		  
-		}else{
-		  
-		  /// ejecutar una conducta cuando la validacion falla
-		}
-  
+			var usuario="<input id='user' type='hidden' name='user' value='"+respuestaServer.id+"'></input>"
+			document.getElementById('oculto').innerHTML = usuario;
+			var thevar= respuestaServer.nombre +" "
+			document.getElementById('saludo').innerHTML = thevar;
+			var cars = "<center><img width='200' height='197' src='https://payan.no-ip.org/imagen.php?type=avatar&id=" + respuestaServer.id + "'/></center>";
+			document.getElementById("demo").innerHTML = cars;
+			$.mobile.changePage("#home",{ transition: "slide", reverse: true, changeHash: false })		  
+		}else{		  
+		}  
 	})
 	return false;
 })
+
 </script>
 </html>
