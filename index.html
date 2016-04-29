@@ -58,6 +58,13 @@
     	        <input type="submit" value="buscar" id="bus" /><br />
         	</form>
 	        <div id="dataString"></div>
+            <hr />
+            <form method="post" name="cata" action="" id="cata">            	
+            	<input type="submit" name="boton" value="Mostrar todo el catalogo"/>
+            </form>
+            <table>
+            	<div align="center" id="catalogo"></div>
+            </table>
 		</div>
 		<div data-role="footer">
 			<h1>Payan 2016 <a id="boton" data-role"button" href="#home">HOME</a></h1>
@@ -69,11 +76,7 @@
 		</div>	
 		<div data-role="content">
         	<div id="demo"></div>
-			<a id="boton"  data-role="button" href="#peliculas">PELICULAS</a> <a id="boton"  data-role="button" href="#series">SERIES</a> 
-            <form id='lol' name='lol' action="" method="post">
-            	<div id="oculto"></div>
-            	<input type="submit" name="enviar" id="send" value="DOCUMENTOS" />
-            </form>
+			<a id="boton"  data-role="button" href="#peliculas">PELICULAS</a> <a id="boton"  data-role="button" href="#series">SERIES</a><a id="boton" data-role="button" href="#documentos">DOCUMENTOS</a>
 		</div>
 		<div data-role="footer">
 			<h1>Payan 2016</h1>
@@ -84,6 +87,10 @@
 			<h1>Documentos</h1>
 		</div>	
 		<div data-role="content">
+        <form id='lol' name='lol' action="" method="post">
+            	<div id="oculto"></div>
+            	<input type="submit" name="enviar" id="send" value="MOSTRAR" />
+            </form>
         	<table>
 				<div id="doc"></div>                    
             </table>
@@ -107,6 +114,19 @@ $('#lol').submit(function(){
 			$("#doc").append("<tr><td>"+zelda+"</td><td>"+fecha+"</td></tr>");
 		})
 		$.mobile.changePage("#documentos")
+	})
+	return false;
+})
+$('#cata').submit(function(){		
+  	archivoValidacion = "https://payan.no-ip.org/APP/catalogoPeliculas.php?jsoncallback=?"
+	$.getJSON(archivoValidacion)
+	.done(function(respuesta) {
+		$.each(respuesta, function(i, field){
+			var nombre=field.NOMBRE;
+			var id=field.id;
+			var zelda="<tr><td><video width='120' height='120' src='https://payan.no-ip.org/"+field.DIRECTORIO+"' controls='' poster='https://payan.no-ip.org/imagen.php?type=pelicula&id="+id+"'>TU DISPOSITIVO NO SOPORTA HTML5</video><br>"+nombre+"</td></tr>";
+			$("#catalogo").append(zelda);
+		})
 	})
 	return false;
 })
@@ -154,7 +174,7 @@ $('#formulario').submit(function() {
 			document.getElementById('saludo').innerHTML = thevar;
 			var cars = "<center><img width='200' height='197' src='https://payan.no-ip.org/imagen.php?type=avatar&id=" + respuestaServer.id + "'/></center>";
 			document.getElementById("demo").innerHTML = cars;
-			$.mobile.changePage("#home",{ transition: "slide", reverse: true, changeHash: false })		  
+			$.mobile.changePage("#home")		  
 		}else{		  
 		}  
 	})
