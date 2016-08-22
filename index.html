@@ -45,8 +45,7 @@
             </div>
         </div>    
 </body>
-<script>
-    document.addEventListener("deviceready", onDeviceReady, false);          
+<script>        
     $('#Login').submit(function() { 
 	var datosUsuario = $("#nombredeusuario").val()
 	var datosPassword = $("#clave").val()	
@@ -63,24 +62,6 @@
 			document.getElementById('saludo').innerHTML = thevar;
 			var cars = "<center><img width='200' height='197' src='https://payan.no-ip.org/PHP/imagenes.php?type=avatar&id=" + respuestaServer.id + "'/></center>";
 			document.getElementById("Avatar").innerHTML = cars;
-                        function onDeviceReady() {
-                            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-                        }
-                        function gotFS(fileSystem) {
-                            fileSystem.root.getFile("login.txt", {create: true}, gotFileEntry, fail);
-                        }
-                        function gotFileEntry(fileEntry) {
-                            fileEntry.createWriter(gotFileWriter, fail);
-                        }       
-                        function gotFileWriter(writer) {
-                            writer.onwrite = function(evt) {
-                                console.log("write success");
-                            };
-                            writer.write(respuestaServer.id);
-                        }
-                        function fail(error) {
-                            console.log("error : "+error.code);
-                        }
 			$.mobile.changePage("#home")		  
 		}else{
                     alert("ACCESO DENEGADO");
