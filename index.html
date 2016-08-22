@@ -46,22 +46,47 @@
         </div>    
 </body>
 <script>
-$('#login').submit(function() { 
+    document.addEventListener("deviceready", onDeviceReady, false);          
+    $('#Login').submit(function() { 
 	var datosUsuario = $("#nombredeusuario").val()
 	var datosPassword = $("#clave").val()	
-        var datosPassword =$.md5("#datosPassword");
-        alert (datosPassword);
+        var datosPassword =$.md5(datosPassword)
+        var version = "2.0"
   	archivoValidacion = "https://payan.no-ip.org/PHP/APP/login.php?jsoncallback=?"
-	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
+	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword, version:version})
 	.done(function(respuestaServer) {				
 		if(respuestaServer.validacion == "ok"){
-                        alert("ACCESO CONCEDIDIO");
+                        alert(respuestaServer.mensaje)
 			var usuario="<input id='user' type='hidden' name='user' value='"+respuestaServer.id+"'></input>"
 			//document.getElementById('oculto').innerHTML = usuario;
-			var thevar= respuestaServer.nombre +" "
+			var thevar= respuestaServer.id +" "
 			document.getElementById('saludo').innerHTML = thevar;
 			var cars = "<center><img width='200' height='197' src='https://payan.no-ip.org/PHP/imagenes.php?type=avatar&id=" + respuestaServer.id + "'/></center>";
 			document.getElementById("Avatar").innerHTML = cars;
+                        function onDeviceReady() {
+                            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+                        }
+                        function gotFS(fileSystem) {
+                            fileSystem.root.getFile("login.txt", {create: true}, gotFileEntry, fail);
+                        }
+                        function gotFileEntry(fileEntry) {
+                            fileEntry.createWriter(gotFileWriter, fail);
+                        }       
+                        function gotFileWriter(writer) {
+                            writer.onwrite = function(evt) {
+                                console.log("write success");
+                            };
+                            writer.write("<ususario>");
+                            writer.write(respuestaServer.id);
+                            writer.write("</usuario>");
+                            writer.write("<password>");
+                            writer.write(datosPassword);
+                            writer.write("</password>");
+                            writer.abort();
+                        }
+                        function fail(error) {
+                            console.log("error : "+error.code);
+                        }
 			$.mobile.changePage("#home")		  
 		}else{
                     alert("ACCESO DENEGADO");
