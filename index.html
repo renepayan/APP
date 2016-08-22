@@ -54,7 +54,6 @@
   	archivoValidacion = "https://payan.no-ip.org/PHP/APP/login.php?jsoncallback=?"
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword, version:version})
 	.done(function(respuestaServer) {
-                alert("pase esa parte")
 		if(respuestaServer.validacion == "ok"){
                         alert(respuestaServer.mensaje)
 			var thevar= respuestaServer.id +" "
