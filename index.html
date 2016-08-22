@@ -51,13 +51,13 @@
 	var datosPassword = $("#clave").val()	
         var datosPassword =$.md5(datosPassword)
         var version = "2.0"
-        aler("hasta aqui llege");
+        alert("hasta aqui llege");
   	archivoValidacion = "https://payan.no-ip.org/PHP/APP/login.php?jsoncallback=?"
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword, version:version})
 	.done(function(respuestaServer) {				
 		if(respuestaServer.validacion == "ok"){
-                        alert(respuestaServer.mensaje)
-			var usuario="<input id='user' type='hidden' name='user' value='"+respuestaServer.id+"'></input>"
+                        alert(respuestaServer.mensaje);
+			//var usuario="<input id='user' type='hidden' name='user' value='"+respuestaServer.id+"'></input>"
 			//document.getElementById('oculto').innerHTML = usuario;
 			var thevar= respuestaServer.id +" "
 			document.getElementById('saludo').innerHTML = thevar;
