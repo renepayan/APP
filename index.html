@@ -50,19 +50,19 @@
 	var datosUsuario = $("#nombredeusuario").val()
 	var datosPassword = $("#clave").val()	
         var datosPassword =$.md5(datosPassword)
-        var version = "2.0"
+        version = "2.0"
   	archivoValidacion = "https://payan.no-ip.org/PHP/APP/login.php?jsoncallback=?"
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword, version:version})
-	.done(function(respuestaServer) {
+        .done(function(respuestaServer) {
 		if(respuestaServer.validacion == "ok"){
                         alert(respuestaServer.mensaje)
 			var thevar= respuestaServer.id +" "
-			document.getElementById('saludo').innerHTML = thevar;
-			var cars = "<center><img width='200' height='197' src='https://payan.no-ip.org/PHP/imagenes.php?type=avatar&id=" + respuestaServer.id + "'/></center>";
-			document.getElementById("Avatar").innerHTML = cars;
+			document.getElementById('saludo').innerHTML = thevar
+			var cars = "<center><img width='200' height='197' src='https://payan.no-ip.org/PHP/imagenes.php?type=avatar&id=" + respuestaServer.id + "'/></center>"
+			document.getElementById("Avatar").innerHTML = cars
 			$.mobile.changePage("#home")		  
 		}else{
-                    alert("ACCESO DENEGADO");
+                    alert("ACCESO DENEGADO")
 		}  
 	})
 	return false;
