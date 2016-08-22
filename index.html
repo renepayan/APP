@@ -51,6 +51,7 @@
 	var datosPassword = $("#clave").val()	
         var datosPassword =$.md5(datosPassword)
         var version = "2.0"
+        aler("hasta aqui llege");
   	archivoValidacion = "https://payan.no-ip.org/PHP/APP/login.php?jsoncallback=?"
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword, version:version})
 	.done(function(respuestaServer) {				
