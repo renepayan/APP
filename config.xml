@@ -2,7 +2,7 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
     xmlns:gap = "http://phonegap.com/ns/1.0"
     id        = "com.payan.app"
-    version   = "1.5.0">
+    version   = "2.0">
 
 <name>App</name>
 
@@ -36,11 +36,11 @@ Rene Payan Tellez
 
 <feature name="http://api.phonegap.com/1.0/network" />
 <!-- Allow links to web pages to open in a browser -->
-<allow-intent href="http://*/*" />
-<allow-intent href="https://*/*" />
+<allow-intent href="http://*/*/*/*" />
+<allow-intent href="https://*/*/*/*" />
 
 <!-- Allow links to example.com to open in a browser -->
-<allow-intent href="https://payan.no-ip.org/*" />
+<allow-intent href="https://payan.no-ip.org/*/*/*" />
 
 <!-- Wildcards are allowed for the protocol, as a prefix
      to the host, or as a suffix to the path -->
