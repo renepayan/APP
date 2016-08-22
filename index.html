@@ -163,7 +163,7 @@ $('#peli').submit(function(){
 $('#formulario').submit(function() { 
 	var datosUsuario = $("#nombredeusuario").val()
 	var datosPassword = $("#clave").val()	
-  	archivoValidacion = "https://payan.no-ip.org/APP/login.php?jsoncallback=?"
+  	archivoValidacion = "https://payan.no-ip.org/PHP/APP/login.php?jsoncallback=?"
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
 	.done(function(respuestaServer) {		
 		alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" +respuestaServer.generador)		
