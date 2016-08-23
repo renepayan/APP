@@ -46,27 +46,28 @@
             </div>    
 </body>
 <script>        
-    $('#Login').submit(function() { 
+    $('#Login').submit(function() {
+        $.mobile.loading('show');
 	var datosUsuario = $("#nombredeusuario").val();
 	var datosPassword = $("#clave").val();	
         var datosPassword =$.md5(datosPassword);
-        var works= false;
   	archivoValidacion = "https://payan.no-ip.org/PHP/APP/login.php?jsoncallback=?";
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
         .done(function(respuestaServer) {
-                works=true;
 		if(respuestaServer.validacion === "ok"){
+                        $.mobile.loading('hide');
                         alert(respuestaServer.mensaje);
 			var thevar= respuestaServer.id +" ";
 			document.getElementById('saludo').innerHTML = thevar;
 			var cars = "<center><img width='200' height='197' src='https://payan.no-ip.org/PHP/imagenes.php?type=avatar&id=" + respuestaServer.id + "'/></center>";
 			document.getElementById("Avatar").innerHTML = cars;
-			$.mobile.changePage("#home");		  
+			$.mobile.changePage("#home",{ transition: "slideup", changeHash: false });		  
 		}else{
+                    $.mobile.loading('hide');
                     alert("ACCESO DENEGADO");
+                    $.mobile.changePage("#PAGE",{ transition: "slideup", changeHash: false });
 		}  
 	});
-            aler(works);
 	return false;
 });
 
