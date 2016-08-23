@@ -44,6 +44,21 @@
                     <h1>Payan 2016</h1>
                 </div>
             </div>    
+            <div data-role="page" id="peliculas">
+                <div data-role="header">
+                    <h1>PELICULAS</div></h1>
+                </div>	
+                <div data-role="content">
+                    <form method="post" action="" id="Peliculas">
+                        <label>TEXTO A BUSCAR:</label><label><input type="text" name="texto" id="texto"></input></label>
+                        <input type="submit" value="ACCESO" id="botonPeliculas"/><br> 
+                    </form>
+                    <div id="resultadosPeliculas"></div>
+                </div>
+                <div data-role="footer">
+                    <h1>Payan 2016</h1>
+                </div>
+            </div>
 </body>
 <script>        
     $('#Login').submit(function() {
@@ -69,7 +84,19 @@
 		}  
 	});
 	return false;
-});
-
+    });
+    $('#Peliculas').submit(function() {
+        $.mobile.loading('show');
+	var texto = $("#texto").val();
+        archivoValidacion = "https://payan.no-ip.org/PHP/APP/buscaPeliculas.php?jsoncallback=?";
+	$.getJSON( archivoValidacion, { texto:texto})
+        .done(function(respuestaServer) {
+            $.mobile.loading('hide');
+            for(var i = respuestaServer.length; i--; ) {
+                
+            }
+        });
+        return false;
+    });
 </script>
 </html>
