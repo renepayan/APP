@@ -1,79 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
-    xmlns:gap = "http://phonegap.com/ns/1.0"
-    id        = "com.payan.app"
-    version   = "2.0">
-
-<name>App</name>
-
-<description>
-App para payan.no-ip.org
-</description>
-
-<author href="https://payan.no-ip.org" email="rene@payan.no-ip.org">
-Rene Payan Tellez
-</author>
-    <gap:plugin name="org.apache.cordova.battery-status" />
-    <gap:plugin name="org.apache.cordova.camera" />
-    <gap:plugin name="org.apache.cordova.media-capture" />
-    <gap:plugin name="org.apache.cordova.console" />
-    <gap:plugin name="org.apache.cordova.contacts" />
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.device-motion" />
-    <gap:plugin name="org.apache.cordova.device-orientation" />
-    <gap:plugin name="org.apache.cordova.dialogs" />
-    <gap:plugin name="org.apache.cordova.file" />
-    <gap:plugin name="org.apache.cordova.file-transfer" />
-    <gap:plugin name="org.apache.cordova.geolocation" />
-    <gap:plugin name="org.apache.cordova.globalization" />
-    <gap:plugin name="org.apache.cordova.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.media" />
-    <gap:plugin name="org.apache.cordova.network-information" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
-    <gap:plugin name="org.apache.cordova.vibration" />
+    	xmlns:gap = "http://phonegap.com/ns/1.0"
+    	id        = "com.payan.app"
+    	version   = "2.0">
+    	<name>App</name>
+    	<description>App para payan.no-ip.org</description>
+    	<author href="https://payan.no-ip.org" email="rene@payan.no-ip.org">Rene Payan Tellez</author>
+    	<gap:plugin name="org.apache.cordova.battery-status" />
+	<gap:plugin name="org.apache.cordova.console" />
+	<gap:plugin name="org.apache.cordova.device" />
+	<gap:plugin name="org.apache.cordova.dialogs" />
+	<gap:plugin name="org.apache.cordova.file" />
+	<gap:plugin name="org.apache.cordova.inappbrowser" />
+	<gap:plugin name="org.apache.cordova.media" />
+	<gap:plugin name="org.apache.cordova.splashscreen" />
+	<gap:plugin name="org.apache.cordova.vibration" />
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-<access origin="*"/>
-
-<feature name="http://api.phonegap.com/1.0/network" />
-<!-- Allow links to web pages to open in a browser -->
-<allow-intent href="http://*/*/*/*" />
-<allow-intent href="https://*/*/*/*" />
-
-<!-- Allow links to example.com to open in a browser -->
-<allow-intent href="https://payan.no-ip.org/*/*/*" />
-
-<!-- Wildcards are allowed for the protocol, as a prefix
-     to the host, or as a suffix to the path -->
-<allow-intent href="*://*.payan.no-ip.org/*" />
-<gap:platforms>
-        <gap:platform name="android" minVersion="2.1"/>
-        <gap:platform name="webos"/>
-        <gap:platform name="symbian.wrt"/>
-        <gap:platform name="blackberry" project="widgets"/>
-    </gap:platforms>
-	
+	<access origin="*"/>
+	<feature name="http://api.phonegap.com/1.0/network" />
+	<allow-intent href="http://*/*/*/*" />
+	<allow-intent href="https://*/*/*/*" />
+	<allow-intent href="https://payan.no-ip.org/*/*/*" />
+	<allow-intent href="*://*.payan.no-ip.org/*" />
+	<gap:platforms>
+	        <gap:platform name="android" minVersion="2.2"/>
+	        <gap:platform name="webos"/>
+        	<gap:platform name="symbian.wrt"/>
+		<gap:platform name="blackberry" project="widgets"/>
+	</gap:platforms>
 	<feature name="http://api.phonegap.com/1.0/device"/>
-	<feature name="http://api.phonegap.com/1.0/battery"/>
-	<feature name="http://api.phonegap.com/1.0/camera"/>
-	<feature name="http://api.phonegap.com/1.0/contacts"/>
 	<feature name="http://api.phonegap.com/1.0/file"/>
-	<feature name="http://api.phonegap.com/1.0/geolocation"/>
 	<feature name="http://api.phonegap.com/1.0/media"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
 	<feature name="http://api.phonegap.com/1.0/notification"/>
-
-<!-- Allow SMS links to open messaging app -->
-<allow-intent href="sms:*" />
-
-<!-- Allow tel: links to open the dialer -->
-<allow-intent href="tel:*" />
-
-<!-- Allow geo: links to open maps -->
-<allow-intent href="geo:*" />
-
-<!-- Allow all unrecognized URLs to open installed apps
-     *NOT RECOMMENDED* -->
-<allow-intent href="*" />
-
-<icon src="icon.png" />
-</widget>
+	<allow-intent href="*" />
+	<icon src="icon.png" />
+	</widget>
