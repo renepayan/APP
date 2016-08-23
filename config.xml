@@ -35,4 +35,5 @@
 	<feature name="http://api.phonegap.com/1.0/notification"/>
 	<allow-intent href="*" />
 	<icon src="icon.png" />
+	<splash src="icon.png"/>
 	</widget>
