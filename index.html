@@ -46,12 +46,12 @@
             </div>    
             <div data-role="page" id="peliculas">
                 <div data-role="header">
-                    <h1>PELICULAS</div></h1>
+                    <h1>PELICULAS</h1>
                 </div>	
                 <div data-role="content">
                     <form method="post" action="" id="Peliculas">
-                        <label>TEXTO A BUSCAR:</label><label><input type="text" name="texto" id="texto"></input></label>
-                        <input type="submit" value="ACCESO" id="botonPeliculas"/><br> 
+                        <label>TEXTO A BUSCAR:</label><input type="text" name="texto" id="texto"></input>
+                        <input type="submit" value="BUSCAR" id="botonPeliculas"></input><br> 
                     </form>
                     <div id="resultadosPeliculas"></div>
                 </div>
@@ -89,12 +89,18 @@
         $.mobile.loading('show');
 	var texto = $("#texto").val();
         archivoValidacion = "https://payan.no-ip.org/PHP/APP/buscaPeliculas.php?jsoncallback=?";
-	$.getJSON( archivoValidacion, { texto:texto})
+        $.getJSON( archivoValidacion, { texto:texto})
         .done(function(respuestaServer) {
             $.mobile.loading('hide');
-            for(var i = respuestaServer.length; i--; ) {
-                
-            }
+            $.each(respuestaServer,function(i,dat){
+                $("#msg").append(
+                '<div class="members">'+
+                    '<h1><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</h1>'+
+                    '<p><em>'+dat.NOMBRE+'</em>'+
+                    '<p><em>'+dat.TRAMA+'</em></p>'+
+                    '<hr>'+
+                '</div>');
+       });
         });
         return false;
     });
