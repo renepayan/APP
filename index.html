@@ -73,9 +73,9 @@
 	var datosUsuario = $("#nombredeusuario").val();
 	var datosPassword = $("#clave").val();	
         var datosPassword =$.md5(datosPassword);
+        $( "msg" ).empty();
   	archivoValidacion = "https://payan.no-ip.org/PHP/APP/login.php?jsoncallback=?";
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
-        $( "msg" ).empty();
         .done(function(respuestaServer) {
 		if(respuestaServer.validacion === "ok"){
                         $.mobile.loading('hide');
@@ -97,9 +97,9 @@
         $.mobile.loading('show');
 	var texto = $("#texto").val();
         archivoValidacion = "https://payan.no-ip.org/PHP/APP/buscaPeliculas.php?jsoncallback=?";
-        $.getJSON( archivoValidacion, { texto:texto})
         $("#msg").append(
         '<table>');
+        $.getJSON( archivoValidacion, { texto:texto})
         .done(function(respuestaServer) {
             $.mobile.loading('hide');
             $.each(respuestaServer,function(i,dat){
