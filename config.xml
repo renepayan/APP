@@ -2,11 +2,10 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
     	xmlns:gap = "http://phonegap.com/ns/1.0"
     	id        = "com.payan.app"
-    	version   = "2.0">
+    	version   = "2.5">
     	<name>App</name>
     	<description>App para payan.no-ip.org</description>
     	<author href="https://payan.no-ip.org" email="rene@payan.no-ip.org">Rene Payan Tellez</author>
-    	<gap:plugin name="org.apache.cordova.battery-status" />
 	<gap:plugin name="org.apache.cordova.console" />
 	<gap:plugin name="org.apache.cordova.device" />
 	<gap:plugin name="org.apache.cordova.dialogs" />
@@ -14,7 +13,6 @@
 	<gap:plugin name="org.apache.cordova.inappbrowser" />
 	<gap:plugin name="org.apache.cordova.media" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
-	<gap:plugin name="org.apache.cordova.vibration" />
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<access origin="*"/>
 	<feature name="http://api.phonegap.com/1.0/network" />
