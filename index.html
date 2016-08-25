@@ -2,15 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <title>SISTEMA</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <link rel="stylesheet" href="css/jquery.mobile.min.css"/>
-                <script src="js/jquery.min.js"></script>
-                <script src="js/jquery.mobile.min.js"></script>
-                <script src="js/jquery.md5.js" type="text/javascript"></script>
-		<script>
-			$("#boton").button(); 
-		</script>
+            <title>SISTEMA</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link rel="stylesheet" href="css/jquery.mobile.min.css"/>
+            <script src="js/jquery.min.js"></script>
+            <script src="js/jquery.mobile.min.js"></script>
+            <script src="js/jquery.md5.js" type="text/javascript"></script>
+            <script>
+                $("#boton").button(); 
+            </script>
 	</head>
 	<body>
             <div data-role="page" id="page">
@@ -56,16 +56,28 @@
                     <div id="msg"> </div>
                 </div>
                 <div data-role="footer">
-                    <button>Volver</button>
+                    <button id="volver">Volver</button>
                     <script>
-                        $( "button" ).click(function() {
+                        $( "#volver" ).click(function() {
                             $("#msg").html("");
                             $.mobile.changePage("#home",{ transition: "slideup", changeHash: false });
                         });
                     </script>
                 </div>
             </div>
-</body>
+            <div id="ver" data-role="page">
+                <div id="cabeza" data-role="header"></div>
+                <div id="cuerpo" data-role="content"></div>
+                <div data-role="footer">
+                    <button id="nose">Volver</button>
+                    <script>
+                        $( "#nose" ).click(function() {
+                            $.mobile.changePage("#peliculas",{ transition: "slideup", changeHash: false });
+                        });
+                    </script>
+                </div>
+            </div>
+    </body>
 <script>        
     $('#Login').submit(function() {
         $.mobile.loading('show');
@@ -103,9 +115,18 @@
                     '<center><b>'+dat.NOMBRE+'</b> ('+dat.ANO+')<br>'+
                     '<img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"<br>'+
                     '<p align=justify>'+dat.TRAMA+'</p><br>'+
-                    '<video controls="" width="120" height="120" src="https://payan.no-ip.org/'+dat.ARCHIVO+'">Porfavor actualize a una version mas reciente de Android</video><br>'+
+                    '<button id=test'+dat.id+'>Ver</button>'+
                 '</center>');
-            });
+                $('#test'+dat.id).on('click', function () {
+                    $("#cabeza").html("");
+                    $("#cuerpo").html("");
+                    var newPage = $("<h1>"+dat.NOMBRE+"("+dat.ANO+")</h1>");
+                    newPage.appendTo("#cabeza");
+                    var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</center><br><p align=justify>'+dat.TRAMA+'</p><br><video heigh=120 width=210 controls= src="https://payan.no-ip.org/'+dat.ARCHIVO+'"></video>');
+                    otherPage.appendTo("#cuerpo");
+                    $.mobile.changePage('#ver');
+                });
+            });            
         });
         return false;
     });
