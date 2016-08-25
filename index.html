@@ -56,6 +56,13 @@
                     <div id="msg"> </div>
                 </div>
                 <div data-role="footer">
+                    <button>Volver</button><br/>
+                    <script>
+                        $( "button" ).click(function() {
+                            $( "msg" ).empty();
+                            $.mobile.changePage("#PAGE",{ transition: "slideup", changeHash: false });
+                        });
+                    </script>
                     <h1>Payan 2016</h1>
                 </div>
             </div>
@@ -68,6 +75,7 @@
         var datosPassword =$.md5(datosPassword);
   	archivoValidacion = "https://payan.no-ip.org/PHP/APP/login.php?jsoncallback=?";
 	$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
+        $( "msg" ).empty();
         .done(function(respuestaServer) {
 		if(respuestaServer.validacion === "ok"){
                         $.mobile.loading('hide');
@@ -90,17 +98,25 @@
 	var texto = $("#texto").val();
         archivoValidacion = "https://payan.no-ip.org/PHP/APP/buscaPeliculas.php?jsoncallback=?";
         $.getJSON( archivoValidacion, { texto:texto})
+        $("#msg").append(
+        '<table>');
         .done(function(respuestaServer) {
             $.mobile.loading('hide');
             $.each(respuestaServer,function(i,dat){
                 $("#msg").append(
-                '<div class="members">'+
-                    '<h1><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</h1>'+
-                    '<p><em>'+dat.NOMBRE+'</em>'+
-                    '<p><em>'+dat.TRAMA+'</em></p>'+
-                    '<hr>'+
-                '</div>');
-       });
+                '<tr>'+
+                    '<td rowspan=2><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</td>'+
+                    '<td><b>'+dat.NOMBRE+'</b></td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>'+dat.ANO+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td colspan=2>'+dat.TRAMA+'</td>'+
+                '</tr>');
+            });
+            $("#msg").append(
+            '</table>');
         });
         return false;
     });
