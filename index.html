@@ -65,6 +65,27 @@
                     </script>
                 </div>
             </div>
+            <div data-role="page" id="series">
+                <div data-role="header">
+                    <h1>SERIES</h1>
+                </div>	
+                <div data-role="content">
+                    <form method="post" action="" id="Series">
+                        <label>TEXTO A BUSCAR:</label><input type="text" name="texto" id="textoSeries"></input>
+                        <input type="submit" value="BUSCAR" id="botonSeries"></input><br> 
+                    </form>
+                    <div id="muestraSeries"> </div>
+                </div>
+                <div data-role="footer">
+                    <button id="volverDeSeries">Volver</button>
+                    <script>
+                        $( "#volverDeSeries" ).click(function() {
+                            $("#muestraSeries").html("");
+                            $.mobile.changePage("#home",{ transition: "slideup", changeHash: false });
+                        });
+                    </script>
+                </div>
+            </div>
             <div id="ver" data-role="page">
                 <div id="cabeza" data-role="header"></div>
                 <div id="cuerpo" data-role="content"></div>
@@ -72,6 +93,18 @@
                     <button id="nose">Volver</button>
                     <script>
                         $( "#nose" ).click(function() {
+                            $.mobile.changePage("#peliculas",{ transition: "slideup", changeHash: false });
+                        });
+                    </script>
+                </div>
+            </div>
+            <div id="serie" data-role="page">
+                <div id="cabezaS" data-role="header"></div>
+                <div id="cuerpoS" data-role="content"></div>
+                <div data-role="footer">
+                    <button id="nosexd">Volver</button>
+                    <script>
+                        $( "#nosexd" ).click(function() {
                             $.mobile.changePage("#peliculas",{ transition: "slideup", changeHash: false });
                         });
                     </script>
@@ -125,6 +158,45 @@
                     var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</center><br><p align=justify>'+dat.TRAMA+'</p><br><video heigh=120 width=210 controls= src="https://payan.no-ip.org/'+dat.ARCHIVO+'"></video>');
                     otherPage.appendTo("#cuerpo");
                     $.mobile.changePage('#ver');
+                });
+            });            
+        });
+        return false;
+    });
+     $('#Series').submit(function() {
+        $.mobile.loading('show');
+	var texto = $("#textoSeries").val();
+            archivoValidacion = "https://payan.no-ip.org/PHP/APP/buscaSeries.php?jsoncallback=?";
+        $("#muestraSeries").html("");
+        $.getJSON( archivoValidacion, { texto:texto})
+        .done(function(respuestaServer) {
+            $.mobile.loading('hide');
+            $.each(respuestaServer,function(i,dat){
+                if(dat.ESTADO==="En emision"){
+                    var fin="presente";
+                    var color="green";
+                }else if(dat.ESTADO==="Cancelada"){
+                    var fin=dat.AF;
+                    var color="red";
+                }else{
+                    var fin=dat.AF;
+                    var color="orange";
+                }
+                $("#muestraSeries").append(
+                    '<center><b>'+dat.NOMBRE+'</b> ('+dat.AI+'-'+fin+') <font color='+color+'>'+dat.ESTADO+'</font><br>'+
+                    '<img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"<br>'+
+                    '<p align=justify>'+dat.TRAMA+'</p><br>'+
+                    '<button id=test'+dat.id+'>Ver</button>'+
+                '</center>');
+                $('#test'+dat.id).on('click', function () {
+                    $("#cabezaS").html("");
+                    $("#cuerpoS").html("");
+                    var newPage = $("<center><b>"+dat.NOMBRE+" ("+dat.AI+"-"+fin+")</b></center>");
+                    newPage.appendTo("#cabezaS");
+                    //fata mandar parametro
+                    var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+dat.TRAMA+'</p><br>INSERTAR LISTA DE TEMPORADAS');
+                    otherPage.appendTo("#cuerpoS");
+                    $.mobile.changePage('#serie');
                 });
             });            
         });
