@@ -10,6 +10,10 @@
             <script src="js/jquery.md5.js" type="text/javascript"></script>
             <script>
                 $("#boton").button(); 
+                var video = document.getElementById('video');
+                    video.addEventListener('click',function(){
+                    video.play();
+                },false);
             </script>
 	</head>
 	<body>
@@ -101,7 +105,9 @@
             <div id="serie" data-role="page">
                 <div id="cabezaS" data-role="header"></div>
                 <div id="cuerpoS" data-role="content"></div>
-                <div id="lista" data-role="content"></div>
+                <div data-role="main" class="ui-content">
+                    <ul data-role="listview" id="listini"></ul>
+                </div>
                 <div data-role="footer">
                     <button id="nosexd">Volver</button>
                     <script>
@@ -156,7 +162,7 @@
                     $("#cuerpo").html("");
                     var newPage = $("<center><b>"+dat.NOMBRE+" ("+dat.ANO+")</b></center>");
                     newPage.appendTo("#cabeza");
-                    var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</center><br><p align=justify>'+dat.TRAMA+'</p><br><video heigh=120 width=210 controls="" src="https://payan.no-ip.org/'+dat.ARCHIVO+'"></video>');
+                    var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</center><br><p align=justify>'+dat.TRAMA+'</p><br><video heigh=240 width=320 controls="" autobuffer=""> <source src="https://payan.no-ip.org/'+dat.ARCHIVO+'"></video>');
                     otherPage.appendTo("#cuerpo");
                     $.mobile.changePage('#ver');
                 });
@@ -192,37 +198,34 @@
                 $('#test'+dat.id).on('click', function () {
                     $("#cabezaS").html("");
                     $("#cuerpoS").html("");
-                    $("#lista").html("");
+                    $("#listini").html("");
                     var newPage = $("<center><b>"+dat.NOMBRE+" ("+dat.AI+"-"+fin+")</b></center>");
                     newPage.appendTo("#cabezaS");
                     var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+dat.TRAMA+'</p>');
                     otherPage.appendTo("#cuerpoS");
                     Temporadas = "https://payan.no-ip.org/PHP/APP/obtenTemporadas.php?jsoncallback=?";
-                    $("#lista").append("<ul data-role='listview>'");
                     $.getJSON( Temporadas, { id:dat.id})
                     .done(function(recursivoa) {
                         $.each(recursivoa,function(a,dato){
-                            $("#lista").append('<li><a href="#">TEMPORADA '+dato.NOMBRE+'<span class="ui-li-count">'+dato.CUANTOS+'</span></a><ul>');
+                            $("#listini").append('<li><a>TEMPORADA '+dato.NOMBRE+'</a><ul id="tugfa'+dato.id+'"></ul></li>').listview('refresh');
                             Episodios = "https://payan.no-ip.org/PHP/APP/obtenEpisodios.php?jsoncallback=?";
                             $.getJSON( Episodios, { serie:dat.id ,temporada:dato.id})
                             .done(function(recursivob) {
                                 $.each(recursivob,function(a,xdxd){
-                                    $("#lista").append("<li>Episodio "+xdxd.NUMERO+" "+xdxd.NOMBRE+" <button id=work"+xdxd.id+">VER</button></li>");
+                                    $("#tugfa"+dato.id).append("<li>Episodio "+xdxd.NUMERO+" "+xdxd.NOMBRE+" <button id='work"+xdxd.id+"'>VER</button></li>");
                                     $("#work"+xdxd.id).on('click',function(){
                                         $("#cabeza").html("");
                                         $("#cuerpo").html("");
                                         var newPage = $("<center><b>"+dat.NOMBRE+" ("+xdxd.NOMBRE+")</b></center>");
                                         newPage.appendTo("#cabeza");
-                                        var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><video heigh=120 width=210 controls="" src="https://payan.no-ip.org/'+xdxd.ARCHIVO+'"></video>');
+                                        var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><video heigh=240 width=320 controls="" autobuffer=""><source src="https://payan.no-ip.org/'+xdxd.ARCHIVO+'"></video>');
                                         otherPage.appendTo("#cuerpo");
                                         $.mobile.changePage('#ver');
                                     });
                                 });
                             });
-                            $("#lista").append("</ul></li>");
                         });
                     });
-                    $("#lista").append("</ul>");
                     $.mobile.changePage('#serie');
                 });
             });            
