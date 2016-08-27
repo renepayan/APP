@@ -2,7 +2,7 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
     	xmlns:gap = "http://phonegap.com/ns/1.0"
     	id        = "com.payan.app"
-    	version   = "2.5">
+    	version   = "2.8">
     	<name>App</name>
     	<description>App para payan.no-ip.org</description>
     	<author href="https://payan.no-ip.org" email="rene@payan.no-ip.org">Rene Payan Tellez</author>
@@ -21,11 +21,20 @@
 	<allow-intent href="https://payan.no-ip.org/*/*/*" />
 	<allow-intent href="*://*.payan.no-ip.org/*" />
 	<gap:platforms>
-	        <gap:platform name="android" minVersion="2.2"/>
+	        <gap:platform name="android"/>
 	        <gap:platform name="webos"/>
         	<gap:platform name="symbian.wrt"/>
 		<gap:platform name="blackberry" project="widgets"/>
 	</gap:platforms>
+	<platform name="android">
+    	<preference name="AndroidLaunchMode" value="singleTop"/>
+	    	<preference name="android-minSdkVersion" value="8" />
+    		<icon src="res/android/xhdpi.png" />
+    		<icon src="res/android/ldpi.png" density="ldpi" />
+    		<icon src="res/android/mdpi.png" density="mdpi" />
+    		<icon src="res/android/hdpi.png" density="hdpi" />
+    		<icon src="res/android/xhdpi.png" density="xhdpi" />
+	</platform>
 	<feature name="http://api.phonegap.com/1.0/device"/>
 	<feature name="http://api.phonegap.com/1.0/file"/>
 	<feature name="http://api.phonegap.com/1.0/media"/>
