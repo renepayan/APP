@@ -160,7 +160,27 @@
                     $("#cuerpo").html("");
                     var newPage = $("<center><b>"+dat.NOMBRE+" ("+dat.ANO+")</b></center>");
                     newPage.appendTo("#cabeza");
-                    var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</center><br><p align=justify>'+dat.TRAMA+'</p><br><video heigh=240 width=320 controls="" autobuffer=""> <source src="https://payan.no-ip.org/'+dat.ARCHIVO+'"></video>');
+                    var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+                    var deviceOSVersion = device.version;                                        
+                    function magia(){
+                        VideoPlayer.play(
+                            "https://payan.no-ip.org/"+dat.ARCHIVO,
+                            {
+                            volume: 0.5
+                            },
+                            function () {
+                            console.log("video completed");
+                            },
+                            function (err) {
+                                console.log(err);
+                            }
+                        );
+                    }
+                    if(deviceType==="Android" && deviceOSVersion>="4.4.4"){
+                        var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</center><br><p align=justify>'+dat.TRAMA+'</p><br><a onclick="'+magia()+'">REPRODUCIR</a>');
+                    }else{
+                        var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=pelicula&id='+dat.id+'"</center><br><p align=justify>'+dat.TRAMA+'</p><br><video heigh=240 width=320 controls="" autobuffer=""> <source src="https://payan.no-ip.org/'+dat.ARCHIVO+'"></video>');
+                    }
                     otherPage.appendTo("#cuerpo");
                     $.mobile.changePage('#ver');
                 });
@@ -216,8 +236,6 @@
                                         $("#cuerpo").html("");
                                         var newPage = $("<center><b>"+dat.NOMBRE+" ("+xdxd.NOMBRE+")</b></center>");
                                         newPage.appendTo("#cabeza");
-                                        //<video heigh=240 width=320 controls="" autobuffer=""><source src="https://payan.no-ip.org/'+xdxd.ARCHIVO+'"></video>
-                                        var repro="https://payan.no-ip.org/"+xdxd.ARCHIVO;
                                         var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
                                         var deviceOSVersion = device.version;
                                         function magia(){
