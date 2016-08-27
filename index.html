@@ -8,12 +8,9 @@
             <script src="js/jquery.min.js"></script>
             <script src="js/jquery.mobile.min.js"></script>
             <script src="js/jquery.md5.js" type="text/javascript"></script>
+            <script type="text/javascript" charset="utf-8" src="video.js"></script>
             <script>
                 $("#boton").button(); 
-                var video = document.getElementById('video');
-                    video.addEventListener('click',function(){
-                    video.play();
-                },false);
             </script>
 	</head>
 	<body>
@@ -218,7 +215,9 @@
                                         $("#cuerpo").html("");
                                         var newPage = $("<center><b>"+dat.NOMBRE+" ("+xdxd.NOMBRE+")</b></center>");
                                         newPage.appendTo("#cabeza");
-                                        var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><video heigh=240 width=320 controls="" autobuffer=""><source src="https://payan.no-ip.org/'+xdxd.ARCHIVO+'"></video>');
+                                        //<video heigh=240 width=320 controls="" autobuffer=""><source src="https://payan.no-ip.org/'+xdxd.ARCHIVO+'"></video>
+                                        var repro="https://payan.no-ip.org/"+xdxd.ARCHIVO;
+                                        var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><a onClick="VideoPlayer.play('+repro+')>REPRODUCIR</a>');
                                         otherPage.appendTo("#cuerpo");
                                         $.mobile.changePage('#ver');
                                     });
