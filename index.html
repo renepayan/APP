@@ -219,8 +219,8 @@
                                         //<video heigh=240 width=320 controls="" autobuffer=""><source src="https://payan.no-ip.org/'+xdxd.ARCHIVO+'"></video>
                                         var repro="https://payan.no-ip.org/"+xdxd.ARCHIVO;
                                         function magia(){
-                                            playVideo('https://payan.no-ip.org'+xdxd.ARCHIVO);
-                                       }
+                                            window.plugins.videoPlayer.play("https://payan.no-ip.org/"+xdxd.ARCHIVO);
+                                        }
                                         var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><a onclick="'+magia()+'">REPRODUCIR</a>');
                                         otherPage.appendTo("#cuerpo");
                                         $.mobile.changePage('#ver');
