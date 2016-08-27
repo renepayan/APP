@@ -14,7 +14,7 @@
 	<gap:plugin name="org.apache.cordova.media" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-	<gap:plugin name="com.moust.cordova.videoplayer"/>
+	<plugin name="VideoPlayer" value="com.phonegap.plugins.video.VideoPlayer"/>
 	<access origin="*"/>
 	<feature name="http://api.phonegap.com/1.0/network" />
 	<allow-intent href="http://*/*/*/*" />
