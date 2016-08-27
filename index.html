@@ -218,6 +218,8 @@
                                         newPage.appendTo("#cabeza");
                                         //<video heigh=240 width=320 controls="" autobuffer=""><source src="https://payan.no-ip.org/'+xdxd.ARCHIVO+'"></video>
                                         var repro="https://payan.no-ip.org/"+xdxd.ARCHIVO;
+                                        var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+                                        var deviceOSVersion = device.version;
                                         function magia(){
                                             VideoPlayer.play(
                                                 "https://payan.no-ip.org/"+xdxd.ARCHIVO,
@@ -232,7 +234,9 @@
                                                 }
                                             );
                                         }
-                                        var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><a onclick="'+magia()+'">REPRODUCIR</a>');
+                                        alert(deviceType);
+                                        alert(deviceOSVersion);
+                                        var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><a onclick="magia()">REPRODUCIR</a>');
                                         otherPage.appendTo("#cuerpo");
                                         $.mobile.changePage('#ver');
                                     });
