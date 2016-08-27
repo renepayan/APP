@@ -234,9 +234,12 @@
                                                 }
                                             );
                                         }
-                                        alert(deviceType);
-                                        alert(deviceOSVersion);
-                                        var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><a onclick="magia()">REPRODUCIR</a>');
+                                        if(deviceType==="Android" && deviceOSVersion<"4.4.4"){
+                                            var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><a onclick="'+magia()+'">REPRODUCIR</a>');
+                                        
+                                        }else{
+                                            var otherPage =$('<center><img height=120 width=120 src="https://payan.no-ip.org/PHP/imagenes.php?type=serie&id='+dat.id+'"</center><br><p align=justify>'+xdxd.TRAMA+'</p><br><video heigh=240 width=320 controls="" autobuffer=""> <source src="https://payan.no-ip.org/'+xdxd.ARCHIVO+'"></video>');
+                                        }
                                         otherPage.appendTo("#cuerpo");
                                         $.mobile.changePage('#ver');
                                     });
