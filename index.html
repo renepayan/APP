@@ -225,7 +225,7 @@
                     $.getJSON( Temporadas, { id:dat.id})
                     .done(function(recursivoa) {
                         $.each(recursivoa,function(a,dato){
-                            $("#listini").append('<li><a>TEMPORADA '+dato.NOMBRE+' ('+dato.EPISODIOS+'/'+dato.CUANTOS+')</a><ul id="tugfa'+dato.id+'"></ul></li>').listview('refresh');
+                            $("#listini").append('<li><a>TEMPORADA '+dato.NOMBRE+' ('+dato.CUANTOS+'/'+dato.EPISODIOS+')</a><ul id="tugfa'+dato.id+'"></ul></li>').listview('refresh');
                             Episodios = "https://payan.no-ip.org/PHP/APP/obtenEpisodios.php?jsoncallback=?";
                             $.getJSON( Episodios, { serie:dat.id ,temporada:dato.id})
                             .done(function(recursivob) {
