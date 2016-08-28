@@ -2,7 +2,7 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
     	xmlns:gap = "http://phonegap.com/ns/1.0"
     	id        = "com.payan.app"
-    	version   = "2.8">
+    	version   = "3.0">
     	<name>App</name>
     	<description>App para payan.no-ip.org</description>
     	<author href="https://payan.no-ip.org" email="rene@payan.no-ip.org">Rene Payan Tellez</author>
