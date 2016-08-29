@@ -27,7 +27,7 @@
         	<gap:platform name="symbian.wrt"/>
 		<gap:platform name="blackberry" project="widgets"/>
 	</gap:platforms>
-	<preference name="android-minSdkVersion" value="8" />
+	<preference name="android-minSdkVersion" value="7" />
 	<feature name="http://api.phonegap.com/1.0/device"/>
 	<feature name="http://api.phonegap.com/1.0/file"/>
 	<feature name="http://api.phonegap.com/1.0/media"/>
@@ -36,5 +36,4 @@
 	<allow-intent href="*" />
 	<icon src="icon.png" />
 	<splash src="icon.png"/>
-	
 </widget>
