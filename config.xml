@@ -22,6 +22,7 @@
 	<allow-intent href="https://*/*/*/*" />
 	<allow-intent href="https://payan.no-ip.org/*/*/*" />
 	<allow-intent href="*://*.payan.no-ip.org/*" />
+	<preference name="xwalkVersion" value="19" />
 	<gap:platforms>
 	        <gap:platform name="android"/>
 	        <gap:platform name="webos"/>
