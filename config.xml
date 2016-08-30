@@ -27,7 +27,8 @@
         	<gap:platform name="symbian.wrt"/>
 		<gap:platform name="blackberry" project="widgets"/>
 	</gap:platforms>
-	<preference name="android-minSdkVersion" value="7" />
+	<preference name="android-minSdkVersion" value="10" />
+	<engine name="android" spec="~4.0.2" />
 	<feature name="http://api.phonegap.com/1.0/device"/>
 	<feature name="http://api.phonegap.com/1.0/file"/>
 	<feature name="http://api.phonegap.com/1.0/media"/>
