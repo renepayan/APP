@@ -1,0 +1,32 @@
+#include <bits/stdtr1c++.h>
+using namespace std;
+int n;
+vector<int>numeros;
+vector<pair<int, int> >finales;
+int fact[] = {0,0,1,2,1,4,3,8,1,2,5,16,3,32,9,6,1,64,3,128,5,10,17,256,3,4,33,2,9,512,7,1024,1,18,65,12,3,2048,129,34,5};
+int DP[20][65536];
+int busca(int donde, long long int mask){
+    if(donde>n)return 0;
+    int minimo=INT_MAX;
+    if(DP[donde][mask]) return DP[donde][mask];
+    for(int i=1;i<=39;i++){
+        if(mask&fact[i]==0){
+            minimo = min(minimo,(busca(donde+1,(mask|fact[i]))+abs(i-numeros[donde]) ) );
+        }
+    }
+    DP[donde][mask] = minimo;
+}
+int main(){
+    int  n;
+    while(true){
+        cin>>n;
+        if(n==0)break;
+        numeros.clear();
+        numeros.resize(n+2);
+        //fin.clear();
+        //fin.resize(n+2);
+        for(int i=1;i<=n;i++)cin>>numeros[n];
+        cout<<busca(1,0);
+    }
+    return 0;
+}
