@@ -11,7 +11,8 @@ int busca(int donde, long long int mask){
     if(DP[donde][mask]) return DP[donde][mask];
     for(int i=1;i<=39;i++){
         if(mask&fact[i]==0){
-            minimo = min(minimo,(busca(donde+1,(mask|fact[i]))+abs(i-numeros[donde]) ) );
+            int sol = busca(donde+1,mask|fact[i])+abs(i-numeros[donde]);
+            minimo = min(minimo,sol);
         }
     }
     DP[donde][mask] = minimo;
